@@ -1,70 +1,141 @@
-# Getting Started with Create React App
+# 📚 Colegio Cambridge - Plataforma de Gestión
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Este proyecto es una aplicación web para administrar la información del **Colegio Cambridge**.  
+Consta de un **API (backend)** y un **frontend en React 19**.  
 
-## Available Scripts
+El sistema permite gestionar:
+- 🏫 **Salones**
+- 🏢 **Oficinas**
+- 🌐 **Áreas**
+- 👩‍🏫 **Empleados**
+- 📊 **Reportes**
 
-In the project directory, you can run:
+---
 
-### `npm start`
+## 🚀 Tecnologías usadas
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **Frontend**: [React 19](https://react.dev/) con JSX  
+- **Estilos**: [Bootstrap 5](https://getbootstrap.com/)  
+- **Cliente HTTP**: [Axios](https://axios-http.com/)  
+- **Ruteo**: [React Router DOM](https://reactrouter.com/)  
+- **Backend (API)**: NestJS / Express  
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+---
 
-### `npm test`
+## ⚙️ Instalación del frontend
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. Clona el repositorio:
+   ```bash
+   git clone https://github.com/tuusuario/colegio-cambridge-frontend.git
+   cd colegio-cambridge-frontend
+   ```
 
-### `npm run build`
+2. Instala dependencias:
+   ```bash
+   npm install
+   ```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+3. Inicia el frontend:
+   ```bash
+   npm start
+   ```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+4. Asegúrate de que el **API** esté corriendo en:
+   ```
+   http://localhost:3000
+   ```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+---
 
-### `npm run eject`
+## ⚙️ Instalación del backend (API)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Repositorio del API: https://github.com/sebasrl95/colegio-cambridge-api
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Pasos generales:
+```bash
+git clone https://github.com/sebasrl95/colegio-cambridge-api.git
+cd colegio-cambridge-api
+npm install
+npm run start
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+---
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## 📂 Estructura del proyecto (frontend)
 
-## Learn More
+```
+src/
+ ├── components/
+ │    ├── Home.jsx               # Pantalla principal con bienvenida
+ │    ├── Navbar.jsx             # Barra de navegación
+ │    ├── Loader/Loader.jsx      # Estado de carga
+ │    ├── Error/ErrorMessage.jsx # Manejo de errores
+ │    ├── Salones/               # Módulo de salones (listado + formulario)
+ │    ├── Oficinas/              # Módulo de oficinas
+ │    ├── Areas/                 # Módulo de áreas
+ │    ├── Empleados/             # Módulo de empleados
+ │    ├── Reportes/Reportes.jsx  # Reportes en pestañas (Áreas/Empleados, Áreas/Salones, Áreas/Oficinas)
+ ├── services/                   # Servicios para consumir el API
+ │    ├── api.js
+ │    ├── salonService.js
+ │    ├── oficinaService.js
+ │    ├── areaService.js
+ │    ├── empleadoService.js
+ ├── App.jsx                     # Configuración de rutas
+ └── index.js
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+---
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## ✨ Funcionalidades principales
 
-### Code Splitting
+- **Home**
+  - Bienvenida al sistema con acceso rápido a todos los módulos.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- **CRUD Salones**
+  - Crear, listar, editar y eliminar salones.
+  - Cada salón se asocia a un **Área**.
+  - Botón de **Cancelar** en el formulario.
 
-### Analyzing the Bundle Size
+- **CRUD Oficinas**
+  - Crear, listar, editar y eliminar oficinas.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- **CRUD Áreas**
+  - Crear, listar, editar y eliminar áreas.
 
-### Making a Progressive Web App
+- **CRUD Empleados**
+  - Campos: `nombre`, `documento`, `área`, `oficina`, `tipoEmpleado`, `tipoProfesor` (si aplica).
+  - Soporte para empleados **administrativos** y **profesores**.
+  - Precarga de área y oficina en modo edición.
+  - Botón de **Cancelar** en el formulario.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+- **Estados de carga y error**
+  - Componente `<Loader />` con spinner de Bootstrap.
+  - Componente `<ErrorMessage />` para mostrar fallas de conexión.
 
-### Advanced Configuration
+- **Módulo de Reportes**
+  - Reporte de **Áreas y Empleados**.
+  - Reporte de **Áreas y Salones**.
+  - Reporte de **Áreas y Oficinas**.
+  - Reportes organizados en **pestañas (Tabs de Bootstrap)**.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+---
 
-### Deployment
+## 🖼️ Capturas
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+### Pantalla principal (Home)
+![Pantalla de inicio](./public/assets/images/colegio-cambridge-home.png)
 
-### `npm run build` fails to minify
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## 📌 Requisitos previos
+
+- Node.js **v20+**
+- npm **v10+**
+- API corriendo en `localhost:3000`
+
+---
+
+## 📜 Licencia
+
+Proyecto con fines educativos - Ingeniería Informática.

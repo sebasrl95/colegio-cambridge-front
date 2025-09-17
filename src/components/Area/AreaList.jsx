@@ -40,28 +40,32 @@ export default function AreaList() {
     return (
         <div className="container mt-4">
             <h2>Áreas</h2>
-            <Link to="/areas/nuevo" className="btn btn-primary mb-3">Nueva área</Link>
-            <table className="table table-bordered">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Nombre</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {areas.map(s => (
-                        <tr key={s._id}>
-                            <td>{s._id}</td>
-                            <td>{s.nombre}</td>
-                            <td>
-                                <Link to={`/areas/editar/${s._id}`} className="btn btn-warning btn-sm">Editar</Link>{" "}
-                                <button className="btn btn-danger btn-sm" onClick={() => handleDelete(s._id)}>Eliminar</button>
-                            </td>
+            <Link to="/areas/nuevo" className="btn btn-primary mb-3">Nueva Área</Link>
+            {areas.length === 0 ? (
+                <p>No hay áreas registradas.</p>
+            ) : (
+                <table className="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Acciones</th>
                         </tr>
-                    ))}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        {areas.map(s => (
+                            <tr key={s._id}>
+                                <td>{s._id}</td>
+                                <td>{s.nombre}</td>
+                                <td>
+                                    <Link to={`/areas/editar/${s._id}`} className="btn btn-warning btn-sm">Editar</Link>{" "}
+                                    <button className="btn btn-danger btn-sm" onClick={() => handleDelete(s._id)}>Eliminar</button>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            )}
         </div>
     );
 }

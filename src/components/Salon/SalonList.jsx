@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-no-undef */
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { getSalones, deleteSalon } from "../../services/salonService";
@@ -52,6 +51,7 @@ export default function SalonList() {
                         <tr>
                             <th>ID</th>
                             <th>Código</th>
+                            <th>Área</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
@@ -60,6 +60,7 @@ export default function SalonList() {
                             <tr key={s._id}>
                                 <td>{s._id}</td>
                                 <td>{s.codigo}</td>
+                                <td>{s.area.nombre}</td>
                                 <td>
                                     <Link
                                         to={`/salones/editar/${s._id}`}
