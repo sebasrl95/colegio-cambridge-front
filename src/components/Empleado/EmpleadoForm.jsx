@@ -116,37 +116,46 @@ export default function EmpleadoForm() {
                 {/* Área */}
                 <div className="mb-3">
                     <label>Área</label>
-                    <select
-                        className="form-select"
-                        value={areaId}
-                        onChange={(e) => setAreaId(e.target.value)}
-                        required
-                    >
-                        <option value="">Seleccione un área</option>
-                        {areas.map((a) => (
-                            <option key={a._id} value={String(a._id)}>
-                                {a.nombre}
-                            </option>
-                        ))}
-                    </select>
+                    {areas.length === 0 ? (
+                        <ErrorMessage message={'No se encuentran áreas registradas.'} />
+                    ) :
+                        <select
+                            className="form-select"
+                            value={areaId}
+                            onChange={(e) => setAreaId(e.target.value)}
+                            required
+                        >
+                            <option value="">Seleccione un área</option>
+                            {areas.map((a) => (
+                                <option key={a._id} value={String(a._id)}>
+                                    {a.nombre}
+                                </option>
+                            ))}
+                        </select>
+                    }
                 </div>
 
                 {/* Oficina */}
                 <div className="mb-3">
                     <label>Oficina</label>
-                    <select
-                        className="form-select"
-                        value={oficinaId}
-                        onChange={(e) => setOficinaId(e.target.value)}
-                        required
-                    >
-                        <option value="">Seleccione una oficina</option>
-                        {oficinas.map((o) => (
-                            <option key={o._id} value={String(o._id)}>
-                                {o.codigo}
-                            </option>
-                        ))}
-                    </select>
+
+                    {areas.length === 0 ? (
+                        <ErrorMessage message={'No se encuentran oficinas registradas.'} />
+                    ) :
+                        <select
+                            className="form-select"
+                            value={oficinaId}
+                            onChange={(e) => setOficinaId(e.target.value)}
+                            required
+                        >
+                            <option value="">Seleccione una oficina</option>
+                            {oficinas.map((o) => (
+                                <option key={o._id} value={String(o._id)}>
+                                    {o.codigo}
+                                </option>
+                            ))}
+                        </select>
+                    }
                 </div>
 
                 {/* Tipo de Empleado */}

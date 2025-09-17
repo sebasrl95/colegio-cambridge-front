@@ -71,19 +71,23 @@ export default function SalonForm() {
                 </div>
                 <div className="mb-3">
                     <label htmlFor="areaSelect">Área</label>
-                    <select
-                        id="areaSelect"
-                        className="form-select"
-                        value={areaId}
-                        onChange={(e) => setAreaId(e.target.value)}
-                        required>
-                        <option value="">Seleccione un área</option>
-                        {areas.map((area) => (
-                            <option key={area._id} value={area._id}>
-                                {area.nombre}
-                            </option>
-                        ))}
-                    </select>
+                    {areas.length === 0 ? (
+                        <ErrorMessage message={'No se encuentran áreas registradas.'} />
+                    ) :
+                        <select
+                            id="areaSelect"
+                            className="form-select"
+                            value={areaId}
+                            onChange={(e) => setAreaId(e.target.value)}
+                            required>
+                            <option value="">Seleccione un área</option>
+                            {areas.map((area) => (
+                                <option key={area._id} value={area._id}>
+                                    {area.nombre}
+                                </option>
+                            ))}
+                        </select>
+                    }
                 </div>
                 <button type="submit" className="btn btn-success me-2">Guardar</button>
                 <button type="button" className="btn btn-secondary" onClick={handleCancel}>Cancelar</button>

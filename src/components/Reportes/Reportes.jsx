@@ -13,7 +13,7 @@ export default function Reportes() {
     const [oficinas, setOficinas] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
-    const [activeTab, setActiveTab] = useState("empleados");
+    const [activeTab, setActiveTab] = useState("salones");
 
     useEffect(() => {
         const fetchData = async () => {
